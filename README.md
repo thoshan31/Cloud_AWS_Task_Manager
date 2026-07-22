@@ -1,8 +1,20 @@
-# Cloud-Native Task Manager API
+# Cloud AWS Task Manager API
 
-Production-ready Node.js and Express API for task management with PostgreSQL, Prisma, JWT authentication, validation, Swagger/OpenAPI, Docker, AWS deployment assets, Terraform, and Kubernetes manifests.
+## Developed By
 
-## Stack
+**Thoshan Sathi Vel SK**
+
+---
+
+## Project Overview
+
+Cloud AWS Task Manager API is a production-ready backend application developed using Node.js, Express.js, PostgreSQL, and Prisma ORM. The application provides secure authentication, task management, health monitoring, and cloud deployment support using Docker, AWS, Terraform, and Kubernetes.
+
+This project demonstrates the implementation of cloud-native backend development practices with scalable architecture and deployment-ready infrastructure.
+
+---
+
+## Technology Stack
 
 - Node.js
 - Express.js
@@ -10,173 +22,212 @@ Production-ready Node.js and Express API for task management with PostgreSQL, Pr
 - Prisma ORM
 - JWT Authentication
 - Express Validator
-- dotenv
-- Jest
-- Docker and Docker Compose
+- Docker
+- Docker Compose
 - Nginx
 - AWS EC2
 - GitHub Actions
 - Terraform
 - Kubernetes
+- Jest
+- ESLint
+
+---
 
 ## Features
 
-- User registration and login
-- JWT-protected routes
-- Role-based authorization ready for extension
-- CRUD for tasks
-- Task categories
-- Task priorities
-- Task status
-- Due dates
-- Search, filtering, sorting, and pagination
-- Input validation
-- Centralized error handling
-- Structured logging
-- Health checks
-- Swagger/OpenAPI documentation
-- Readiness and liveness probes
+- Secure User Registration and Login
+- JWT Authentication
+- Task CRUD Operations
+- Task Categories
+- Task Priorities
+- Task Status Management
+- Due Dates
+- Search, Filtering and Pagination
+- Input Validation
+- Error Handling Middleware
+- Structured Logging
+- Health Check APIs
+- Swagger API Documentation
+- Docker Support
+- AWS Deployment Ready
+- Kubernetes Configuration
+- Terraform Infrastructure
+
+---
 
 ## Project Structure
 
-- `src/controllers` - HTTP controllers
-- `src/routes` - API routes
-- `src/services` - business logic
-- `src/middleware` - auth, error, and validation middleware
-- `src/config` - environment, database, logger, Swagger config
-- `src/models` - Prisma client wrapper
-- `src/utils` - shared helpers
-- `src/validators` - request validation rules
-- `prisma` - schema and migrations
-- `scripts` - setup and deployment scripts
-- `tests` - unit and integration tests
-- `docker-compose.yml` - local app and PostgreSQL stack
-- `terraform` - AWS EC2 infrastructure
-- `nginx` - reverse proxy config
-- `k8s` - Kubernetes manifests
+```
+src/
+ ├── config/
+ ├── controllers/
+ ├── middleware/
+ ├── models/
+ ├── routes/
+ ├── services/
+ ├── utils/
+ ├── validators/
 
-## Prerequisites
-
-- Node.js 20+
-- npm 10+
-- PostgreSQL 16+
-- Docker and Docker Compose
-
-## Environment Variables
-
-Copy the example file and set the values:
-
-```bash
-cp .env.example .env
+prisma/
+scripts/
+tests/
+terraform/
+k8s/
+nginx/
 ```
 
-Required variables:
+---
 
-- `PORT`
-- `NODE_ENV`
-- `DATABASE_URL`
-- `JWT_SECRET`
-- `JWT_EXPIRES_IN`
-- `CORS_ORIGIN`
-- `LOG_LEVEL`
-- `SWAGGER_ENABLED`
+## Installation
 
-## Local Setup
+Clone the repository
+
+```bash
+git clone https://github.com/thoshan31/cloud_AWS_Task_Manager.git
+```
+
+Move into the project
+
+```bash
+cd cloud_AWS_Task_Manager
+```
+
+Install dependencies
 
 ```bash
 npm install
+```
+
+Generate Prisma Client
+
+```bash
 npm run prisma:generate
+```
+
+Run database migrations
+
+```bash
 npm run prisma:migrate
+```
+
+Start the development server
+
+```bash
 npm run dev
 ```
 
-API base URL:
+---
 
-```bash
+## Environment Variables
+
+Create a `.env` file using `.env.example`.
+
+Required variables:
+
+- PORT
+- NODE_ENV
+- DATABASE_URL
+- JWT_SECRET
+- JWT_EXPIRES_IN
+- CORS_ORIGIN
+- LOG_LEVEL
+- SWAGGER_ENABLED
+
+---
+
+## API Base URL
+
+```
 http://localhost:3000
 ```
 
-Swagger UI:
+---
 
-```bash
+## API Documentation
+
+Swagger UI
+
+```
 http://localhost:3000/api-docs
 ```
 
-## NPM Scripts
+---
 
-- `npm run dev` - start the API with nodemon
-- `npm start` - start the API in production mode
-- `npm run lint` - run ESLint
-- `npm test` - run Jest tests
-- `npm run test:watch` - run Jest in watch mode
-- `npm run prisma:generate` - generate Prisma client
-- `npm run prisma:migrate` - run Prisma migrations locally
-- `npm run prisma:studio` - open Prisma Studio
+## Available API Routes
+
+### Authentication
+
+- POST /api/v1/auth/register
+- POST /api/v1/auth/login
+
+### Tasks
+
+- GET /api/v1/tasks
+- POST /api/v1/tasks
+- GET /api/v1/tasks/:taskId
+- PATCH /api/v1/tasks/:taskId
+- DELETE /api/v1/tasks/:taskId
+
+### Health
+
+- GET /api/v1/health
+- GET /api/v1/health/live
+- GET /api/v1/health/ready
+
+---
 
 ## Testing
 
-Run all tests:
+Run tests
 
 ```bash
-npm test -- --runInBand
+npm test
 ```
 
-Run linting:
+Run linting
 
 ```bash
 npm run lint
 ```
 
+---
+
 ## Docker
 
-Build and start the full stack:
+Build and start the application
 
 ```bash
 docker compose up --build
 ```
 
-The Compose stack exposes:
+---
 
-- API: `http://localhost:3000`
-- PostgreSQL: `localhost:5432`
+## Cloud Infrastructure
 
-## GitHub Actions Deployment
+This project includes deployment-ready configuration for:
 
-The CI workflow runs tests and builds the Docker image on pull requests and pushes to `main`.
+- AWS EC2
+- Docker
+- GitHub Actions
+- Terraform
+- Kubernetes
+- Nginx Reverse Proxy
 
-Deployment to EC2 runs on pushes to `main` only when these repository secrets are configured:
+---
 
-- `EC2_HOST` - EC2 public IP address or DNS name
-- `EC2_USER` - SSH username, for example `ubuntu` or `ec2-user`
-- `EC2_SSH_KEY` - private SSH key with access to the EC2 instance
-- `DEPLOY_PATH` - application directory on the EC2 instance
+## Author
 
-If any deployment secret is missing, the deploy job is skipped with a warning.
+**Thoshan Sathi Vel SK**
 
-## Health Checks
+B.Tech Computer Science and Engineering (Software Product Engineering)
 
-- Liveness: `GET /api/v1/health/live`
-- Readiness: `GET /api/v1/health/ready`
-- General health alias: `GET /api/v1/health`
+Alliance University
 
-## API Routes
+---
 
-### Auth
+## License
 
-- `POST /api/v1/auth/register`
-- `POST /api/v1/auth/login`
+MIT License
 
-### Tasks
-
-- `GET /api/v1/tasks`
-- `POST /api/v1/tasks`
-- `GET /api/v1/tasks/:taskId`
-- `PATCH /api/v1/tasks/:taskId`
-- `DELETE /api/v1/tasks/:taskId`
-
-### Health
-
-- `GET /api/v1/health`
-- `GET /api/v1/health/live`
-- `GET /api/v1/health/ready`
-
+Copyright (c) 2026 Thoshan Sathi Vel SK
